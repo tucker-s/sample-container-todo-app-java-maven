@@ -64,18 +64,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ build ]
     steps:
-      - name: Dump github context
-        run: echo '${{ toJSON(github) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'        
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump step context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
       - name: "build job's run id is #${{ needs.build.outputs.run_id }}"
         run: >
           echo "build job's run id is ${{ needs.build.outputs.run_id }}"
@@ -85,3 +73,18 @@ jobs:
         with:
           script: |
             console.log(process.env.RUNNER_NAME)
+            
+  use-another-job-id:
+    name: Use another job
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+      - name: "build job's run id is #${{ needs.build.outputs.run_id }}"
+        run: >
+          echo "build job's run id is ${{ needs.build.outputs.run_id }}"
+      - name: "Runner name"
+        id: runner-name
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(process.env.RUNNER_NAME)            
