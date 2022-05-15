@@ -42,7 +42,7 @@ jobs:
             (async function() {
                 const id_token = await core2.getIDToken();
                 decoded = jwt.decode(id_token , {complete: true});
-                core.setOutput("environment", decoded.payload.environment);
+                core.setOutput("environment", decoded.payload);
             })()
           
             // Available variables: https://github.com/actions/github-script#actionsgithub-script
@@ -69,7 +69,7 @@ jobs:
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
       - name: "Environment name"
         run: >
-          echo "${{steps.get-job-id.outputs.environment}}"  
+          echo "environment=${{steps.get-job-id.outputs.environment}}"  
 
   use-other-job-id:
     name: Use other job
