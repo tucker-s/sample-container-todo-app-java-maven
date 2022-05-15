@@ -25,6 +25,10 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 12
+      - run: npm install @actions/core jsonwebtoken
       - name: "Get this job's run ID"
         id: get-job-id
         uses: actions/github-script@v6
