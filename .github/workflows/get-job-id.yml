@@ -69,7 +69,7 @@ jobs:
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
       - name: "Environment name"
         run: >
-          echo "${{steps.environment.outputs.environment}}"  
+          echo "${{steps.get-job-id.outputs.environment}}"  
 
   use-other-job-id:
     name: Use other job
