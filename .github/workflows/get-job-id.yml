@@ -30,10 +30,10 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const core = require('@actions/core');
+            const core2 = require('@actions/core');
             const jwt = require('jsonwebtoken');
             (async function() {
-                const id_token = await core.getIDToken();
+                const id_token = await core2.getIDToken();
                 decoded = jwt.decode(id_token , {complete: true});
                 core.setOutput("environment", decoded.payload.environment);
             })()
