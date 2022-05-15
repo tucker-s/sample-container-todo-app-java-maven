@@ -53,8 +53,11 @@ jobs:
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
       - name: "Runner name"
-        run: >
-          echo "runner=${{env.RUNNER_NAME}}"  
+        id: runner-name
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(process.env.RUNNER_NAME)
 
   use-other-job-id:
     name: Use other job
@@ -77,5 +80,8 @@ jobs:
         run: >
           echo "build job's run id is ${{ needs.build.outputs.run_id }}"
       - name: "Runner name"
-        run: >
-          echo "runner=${{env.RUNNER_NAME}}"
+        id: runner-name
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(process.env.RUNNER_NAME)
