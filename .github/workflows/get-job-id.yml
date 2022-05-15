@@ -30,6 +30,14 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const core = require('@actions/core');
+            const jwt = require('jsonwebtoken');
+            (async function() {
+                const id_token = await core.getIDToken();
+                decoded = jwt.decode(id_token , {complete: true});
+                core.setOutput("environment", decoded.payload.environment);
+            })()
+          
             // Available variables: https://github.com/actions/github-script#actionsgithub-script
             // Rest API Docs: https://docs.github.com/en/rest/actions/workflow-jobs#list-jobs-for-a-workflow-run
             // Rest JS API: https://octokit.github.io/rest.js/v18#actions-list-jobs-for-workflow-run
@@ -52,6 +60,9 @@ jobs:
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}, but also echoing it to it's usable from scripts!"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
+      - name: "Environment name"
+        run: >
+          echo "${{steps.environment.outputs.environment}}"  
 
   use-other-job-id:
     name: Use other job
