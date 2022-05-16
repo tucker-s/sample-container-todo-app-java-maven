@@ -58,14 +58,13 @@ jobs:
               if (currentJobs && currentJobs.length) {
                 return currentJobs[0].id;
               }
+              return null;
             }
-            for (let i = 0; i < 10; i++) {
-              const jobId = getJobId();
-              if (jobId) {
-                console.log("Current job id:", currentJobId);
-                return jobId;
-              }
+            const jobId = getJobId();
+            if (jobId) {
+              console.log("Current job id:", currentJobId);
             }
+            return jobId;
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
