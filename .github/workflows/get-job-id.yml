@@ -15,17 +15,27 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const result = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-            });
-            //console.log(result);
-            const currentJobs = result.data.jobs.
-              filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
-            const currentJobId = currentJobs[0].id;
-            console.log("Current job id:", currentJobId);
-            return currentJobId;
+            const getJobId = async() => {
+              const result = await github.rest.actions.listJobsForWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+              });
+              const currentJobs = result.data.jobs.
+                filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
+              if (currentJobs && currentJobs.length) {
+                return currentJobs[0].id;
+              }
+              return null;
+            }
+            for (let i = 0; i < 10; i++) {
+              const currentJobId = await getJobId();
+              if (currentJobId) {
+                console.log("Current job id:", currentJobId);
+                return currentJobId;
+              }
+              await new Promise(r => setTimeout(r, 1000));
+            }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
@@ -66,6 +76,7 @@ jobs:
                 console.log("Current job id:", currentJobId);
                 return currentJobId;
               }
+              await new Promise(r => setTimeout(r, 1000));
             }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
@@ -86,17 +97,27 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const result = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-            });
-            //console.log(result);
-            const currentJobs = result.data.jobs.
-              filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
-            const currentJobId = currentJobs[0].id;
-            console.log("Current job id:", currentJobId);
-            return currentJobId;
+            const getJobId = async() => {
+              const result = await github.rest.actions.listJobsForWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+              });
+              const currentJobs = result.data.jobs.
+                filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
+              if (currentJobs && currentJobs.length) {
+                return currentJobs[0].id;
+              }
+              return null;
+            }
+            for (let i = 0; i < 10; i++) {
+              const currentJobId = await getJobId();
+              if (currentJobId) {
+                console.log("Current job id:", currentJobId);
+                return currentJobId;
+              }
+              await new Promise(r => setTimeout(r, 1000));
+            }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
@@ -116,17 +137,27 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const result = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-            });
-            //console.log(result);
-            const currentJobs = result.data.jobs.
-              filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
-            const currentJobId = currentJobs[0].id;
-            console.log("Current job id:", currentJobId);
-            return currentJobId;
+            const getJobId = async() => {
+              const result = await github.rest.actions.listJobsForWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+              });
+              const currentJobs = result.data.jobs.
+                filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
+              if (currentJobs && currentJobs.length) {
+                return currentJobs[0].id;
+              }
+              return null;
+            }
+            for (let i = 0; i < 10; i++) {
+              const currentJobId = await getJobId();
+              if (currentJobId) {
+                console.log("Current job id:", currentJobId);
+                return currentJobId;
+              }
+              await new Promise(r => setTimeout(r, 1000));
+            }  
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
