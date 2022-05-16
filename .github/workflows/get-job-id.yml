@@ -30,14 +30,11 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 10; i++) {
-              const currentJobId = await getJobId();
-              if (currentJobId) {
-                console.log("Current job id:", currentJobId);
-                return currentJobId;
-              }
-              await new Promise(r => setTimeout(r, 1000));
-            }   
+            const currentJobId = await getJobId();
+            if (currentJobId) {
+              console.log("Current job id:", currentJobId);
+            }
+            return currentJobId;
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
@@ -74,14 +71,11 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 10; i++) {
-              const currentJobId = await getJobId();
-              if (currentJobId) {
-                console.log("Current job id:", currentJobId);
-                return currentJobId;
-              }
-              await new Promise(r => setTimeout(r, 1000));
-            }   
+            const currentJobId = await getJobId();
+            if (currentJobId) {
+              console.log("Current job id:", currentJobId);
+            }
+            return currentJobId; 
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
@@ -115,14 +109,11 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 10; i++) {
-              const currentJobId = await getJobId();
-              if (currentJobId) {
-                console.log("Current job id:", currentJobId);
-                return currentJobId;
-              }
-              await new Promise(r => setTimeout(r, 1000));
-            }   
+            const currentJobId = await getJobId();
+            if (currentJobId) {
+              console.log("Current job id:", currentJobId);
+            }
+            return currentJobId;
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
@@ -156,14 +147,11 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 10; i++) {
-              const currentJobId = await getJobId();
-              if (currentJobId) {
-                console.log("Current job id:", currentJobId);
-                return currentJobId;
-              }
-              await new Promise(r => setTimeout(r, 1000));
-            }  
+            const currentJobId = await getJobId();
+            if (currentJobId) {
+              console.log("Current job id:", currentJobId);
+            }
+            return currentJobId;
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
