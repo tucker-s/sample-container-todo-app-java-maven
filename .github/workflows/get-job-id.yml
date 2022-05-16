@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-        order: [1, 2, 3]
+        order: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     runs-on: ${{ matrix.os }}
     steps:
       - name: "Get this job's run ID"
@@ -50,8 +50,9 @@ jobs:
   build2:
     strategy:
       matrix:
-        order: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ]
-    runs-on: ubuntu-latest
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        order: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: "Get this job's run ID"
         id: get-job-id
