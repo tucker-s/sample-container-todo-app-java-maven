@@ -30,7 +30,7 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 10; i++) {
               const currentJobId = await getJobId();
               if (currentJobId) {
                 console.log("Current job id:", currentJobId);
@@ -74,7 +74,7 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 10; i++) {
               const currentJobId = await getJobId();
               if (currentJobId) {
                 console.log("Current job id:", currentJobId);
@@ -115,7 +115,7 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 10; i++) {
               const currentJobId = await getJobId();
               if (currentJobId) {
                 console.log("Current job id:", currentJobId);
@@ -156,7 +156,7 @@ jobs:
               }
               return null;
             }
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 10; i++) {
               const currentJobId = await getJobId();
               if (currentJobId) {
                 console.log("Current job id:", currentJobId);
