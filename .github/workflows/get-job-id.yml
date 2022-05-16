@@ -21,6 +21,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: context.runId,
+                per_page: 100,
               });
               const currentJobs = result.data.jobs.
                 filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
@@ -35,7 +36,7 @@ jobs:
                 console.log("Current job id:", currentJobId);
                 return currentJobId;
               }
-              await new Promise(r => setTimeout(r, 2000));
+              await new Promise(r => setTimeout(r, 1000));
             }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
@@ -64,6 +65,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: context.runId,
+                per_page: 100,
               });
               const currentJobs = result.data.jobs.
                 filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
@@ -78,7 +80,7 @@ jobs:
                 console.log("Current job id:", currentJobId);
                 return currentJobId;
               }
-              await new Promise(r => setTimeout(r, 2000));
+              await new Promise(r => setTimeout(r, 1000));
             }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
@@ -104,6 +106,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: context.runId,
+                per_page: 100,
               });
               const currentJobs = result.data.jobs.
                 filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
@@ -118,7 +121,7 @@ jobs:
                 console.log("Current job id:", currentJobId);
                 return currentJobId;
               }
-              await new Promise(r => setTimeout(r, 2000));
+              await new Promise(r => setTimeout(r, 1000));
             }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
@@ -144,6 +147,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: context.runId,
+                per_page: 100,
               });
               const currentJobs = result.data.jobs.
                 filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
@@ -158,7 +162,7 @@ jobs:
                 console.log("Current job id:", currentJobId);
                 return currentJobId;
               }
-              await new Promise(r => setTimeout(r, 2000));
+              await new Promise(r => setTimeout(r, 1000));
             }  
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
