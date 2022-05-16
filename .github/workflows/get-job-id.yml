@@ -61,10 +61,10 @@ jobs:
               return null;
             }
             for (let i = 0; i < 10; i++) {
-              const jobId = await getJobId();
-              if (jobId) {
+              const currentJobId = await getJobId();
+              if (currentJobId) {
                 console.log("Current job id:", currentJobId);
-                return jobId;
+                return currentJobId;
               }
             }   
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
