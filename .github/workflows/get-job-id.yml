@@ -47,22 +47,25 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            for (let i = 0; i < 10; i++) {
+            const getJobId() => {
               const result = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: context.runId,
               });
-              //console.log(result);
               const currentJobs = result.data.jobs.
                 filter(it => it.status === 'in_progress' && it.runner_name === process.env.RUNNER_NAME);
               if (currentJobs && currentJobs.length) {
-                const currentJobId = currentJobs[0].id;
+                return currentJobs[0].id;
+              }
+            }
+            for (let i = 0; i < 10; i++) {
+              const jobId = getJobId();
+              if (jobId) {
                 console.log("Current job id:", currentJobId);
-                return currentJobId;
-              }  
-           }
-           return null;
+                return jobId;
+              }
+            }
       - name: "My job ID is ${{steps.get-job-id.outputs.result}}"
         run: >
           echo "get-job-id=${{steps.get-job-id.outputs.result}}"
