@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
+        order: [1, 2, 3]
     runs-on: ${{ matrix.os }}
     steps:
       - name: "Get this job's run ID"
