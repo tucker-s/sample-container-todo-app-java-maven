@@ -47,7 +47,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const getJobId = () => {
+            const getJobId = async() => {
               const result = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -61,7 +61,7 @@ jobs:
               return null;
             }
             for (let i = 0; i < 10; i++) {
-              const jobId = getJobId();
+              const jobId = await getJobId();
               if (jobId) {
                 console.log("Current job id:", currentJobId);
                 return jobId;
