@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -97,5 +98,19 @@ class TodoServiceTest {
         Todo actual = service.duplicateTodo(1L);
         assertThat(actual).extracting(Todo::getId, Todo::getTitle, Todo::isCompleted)
                 .containsExactly(2L, expected.getTitle(), expected.isCompleted());
+    }
+
+    @Test
+    void testDuplicateTodoWithError() {
+        TodoEntity expected = new TodoEntity(1L, "Test", true);
+        when(repository.findById(anyLong())).thenReturn(Optional.of(expected));
+        when(repository.save(any(TodoEntity.class))).thenAnswer((Answer<TodoEntity>) invocationOnMock -> {
+            TodoEntity entity = invocationOnMock.getArgument(0, TodoEntity.class);
+            entity.setId(2L);
+            return entity;
+        });
+        Todo actual = service.duplicateTodo(1L);
+        assertThat(actual).extracting(Todo::getId, Todo::getTitle, Todo::isCompleted)
+                .containsExactly(1L, expected.getTitle(), expected.isCompleted());
     }
 }
