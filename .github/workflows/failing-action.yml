@@ -1,0 +1,16 @@
+name: Failing action
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  build:
+    name: cd to unexisting folder
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd asdansdjkams
+        
+          
+          
