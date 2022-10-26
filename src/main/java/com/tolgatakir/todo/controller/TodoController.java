@@ -54,6 +54,7 @@ public class TodoController {
     @PostMapping("/{id}/duplicate")
     public ResponseEntity<Todo> duplicateTodo(@PathVariable Long id) {
         Todo todo = service.duplicateTodo(id);
+
         return ResponseEntity.ok(todo);
     }
 
